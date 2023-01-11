@@ -846,3 +846,10 @@ img {
   margin-bottom: 1rem;
   margin-top: 2rem;
 }
+
+#messageDiv {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 0);
+  font-size: 50px;
+}

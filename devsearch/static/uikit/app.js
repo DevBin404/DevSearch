@@ -1,4 +1,7 @@
 // Invoke Functions Call on Document Loaded
-document.addEventListener('DOMContentLoaded', function () {
-  hljs.highlightAll();
-});
+
+var messageWrapper = document.querySelector('.alert')
+console.log(messageWrapper)
+setTimeout(function(){
+  messageWrapper.style.display = 'none';
+}, 5000)
