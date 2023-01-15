@@ -1,15 +1,24 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
+from django.contrib import messages
+
 from .forms import ProjectForm
 from .models import Project
-from django.contrib.auth.decorators import login_required
+from .uttils import searchProjects, paginateProjects
 
 
 def projects(request):
-    projects = Project.objects.all() 
+    projects, search_query = searchProjects(request)
+
+    projects, custom_range = paginateProjects(request, projects, 3)
+
     context = {
         'projects': projects,
+        'search_query': search_query, 
+        'custom_range': custom_range,
     }
     return render(request, 'projects/projects.html', context)
+
 
 def project(request, pk):
     project = Project.objects.get(pk=pk)
@@ -17,6 +26,7 @@ def project(request, pk):
         'project': project,
     }        
     return render(request, 'projects/single-project.html', context)
+
 
 @login_required(login_url='login')
 def createProject(request):
@@ -29,7 +39,8 @@ def createProject(request):
             project = form.save(commit=False)
             project.owner = profile
             project.save()
-            return redirect('projects')
+            messages.success(request, 'Project was created successfully!')
+            return redirect('account')
     context = {
         'form': form,
     }
@@ -46,7 +57,8 @@ def updateProject(request, pk):
         form = ProjectForm(request.POST, request.FILES,instance=project)
         if form.is_valid():
             form.save()
-            return redirect('projects')
+            messages.success(request, 'Project was updated successfully')
+            return redirect('account')
     context = {
         'form': form,
     }
@@ -60,10 +72,11 @@ def deleteProject(request, pk):
 
     if request.method == 'POST':
         project.delete()
-        return redirect('projects')
+        messages.success(request, 'Project was deleted successfully!')
+        return redirect('account')
 
     context = {
-        'project': project
+        'object': project
     }
-    return render(request, 'projects/delete-template.html', context)     
+    return render(request, 'delete-template.html', context)     
     
