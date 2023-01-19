@@ -16,14 +16,14 @@ def loginUser(request):
         return redirect('profiles')
 
     if request.method == 'POST':
-        username = request.POST['username']
+        username = request.POST['username'].lower()
         password = request.POST['password']
 
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
             messages.success(request, 'User was logged in successfully!')
-            return redirect('edit-account')
+            return redirect(request.GET['next'] if 'next' in request.GET else 'edit-account')
         else:
             messages.error(request, 'Username OR password is incorrect')
     
@@ -48,7 +48,7 @@ def regitsterUser(request):
             messages.success(request, 'User account was created')
 
             login(request, user)
-            return redirect('edit-account')
+            return redirect(request.GET['next'] if 'next' in request.GET else 'edit-account')
         else:
             messages.error(request, 'An error has occurred during registration')    
 
