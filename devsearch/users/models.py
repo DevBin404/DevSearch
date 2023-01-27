@@ -24,6 +24,9 @@ class Profile(models.Model):
     def __str__(self):
         return str(self.username) 
 
+    class Meta:
+        ordering = ['profile_image']
+
 
 class Skill(models.Model):
     owner = models.ForeignKey(Profile, null=True, blank=True,

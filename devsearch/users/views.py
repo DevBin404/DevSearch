@@ -1,12 +1,12 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 from django.contrib import messages
-from .models import Profile, Skill, Message
-from .forms import CustomUserCreationForm, ProfileForm, SkillForm, MessageFrom
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-from .uttils import searchProfiles, paginateProfiles
 
+from .forms import CustomUserCreationForm, ProfileForm, SkillForm, MessageFrom
+from .uttils import searchProfiles, paginateProfiles
+from .models import Profile, Skill, Message
 
 
 def loginUser(request):

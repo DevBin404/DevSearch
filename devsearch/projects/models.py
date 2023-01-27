@@ -1,6 +1,7 @@
 from django.db import models
-from users.models import Profile
 import uuid
+
+from users.models import Profile
 
 
 class Project(models.Model):

@@ -34,9 +34,7 @@ def project(request, pk):
         project.getVoteCount
 
         messages.info(request, 'Your review submitted for this project!')
-        return redirect('project', pk=project.id)
-        #Update project votecount
-
+        return redirect('project', pk=project.id)  
     context = {
         'project': project,
         'form': form,
@@ -90,7 +88,6 @@ def deleteProject(request, pk):
         project.delete()
         messages.success(request, 'Project was deleted successfully!')
         return redirect('account')
-
     context = {
         'object': project
     }

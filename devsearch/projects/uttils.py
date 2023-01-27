@@ -1,6 +1,7 @@
 from django.db.models import Q
-from .models import Project, Tag
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+
+from .models import Project, Tag
 
 
 def searchProjects(request):
