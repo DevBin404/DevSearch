@@ -20,10 +20,17 @@
                 </div>
                 {% endfor %}
 
+                
                 <div class="form__field">
                     <label for="formInput#text">Tags:</label>
                     <p style="font-size: 0.9em;">Add your tags, starting with CAPITAL and dash (-) between them. e.g "Django-React-Js"</p>
                     <textarea class="input" name="newtags"></textarea>
+                </div>
+                
+                <div class="form__field" >
+                    {% for tag in project.tags.all %}
+                        <div class="project-tag tag tag--pill tag--main" data-tag="{{tag.id}}" data-project="{{project.id}}">{{tag}} &#215; </div>
+                    {% endfor %}
                 </div>
 
                 <input class="btn btn--sub btn--lg  my-md" type="submit" value="Submit" />
