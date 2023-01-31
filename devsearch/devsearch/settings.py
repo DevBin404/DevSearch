@@ -29,12 +29,15 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     
     'rest_framework',
+    'corsheaders',
     
     'projects.apps.ProjectsConfig',
     'users.apps.UsersConfig',
     ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
+
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -151,3 +154,7 @@ SIMPLE_JWT = {
 
     'AUTH_HEADER_TYPES' : ('Dev',),
 }
+
+# CORS Policy Config
+
+CORS_ALLOW_ALL_ORIGINS = True
