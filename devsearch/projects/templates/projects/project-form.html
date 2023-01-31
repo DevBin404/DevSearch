@@ -5,7 +5,7 @@
 <main class="formPage my-xl">
     <div class="content-box">
         <div class="formWrapper">
-            <a class="backButton" href="#"><i class="im im-angle-left"></i></a>
+            <a class="backButton" href="{% url 'account' %}"><i class="im im-angle-left"></i></a>
             <br>
 
             <form class="form" method="POST" enctype="multipart/form-data" >
@@ -19,12 +19,17 @@
 
                 </div>
                 {% endfor %}
+
+                <div class="form__field">
+                    <label for="formInput#text">Tags:</label>
+                    <p style="font-size: 0.9em;">Add your tags, starting with CAPITAL and dash (-) between them. e.g "Django-React-Js"</p>
+                    <textarea class="input" name="newtags"></textarea>
+                </div>
+
                 <input class="btn btn--sub btn--lg  my-md" type="submit" value="Submit" />
             </form>
         </div>
     </div>
 </main>
-
-Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo temporibus dolore eligendi qui quaerat velit veniam consequatur accusantium deleniti tempora, sequi commodi ipsa. Harum enim hic blanditiis excepturi labore suscipit?
 
 {% endblock %}
